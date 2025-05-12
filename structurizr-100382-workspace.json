@@ -1,0 +1,485 @@
+{
+    "configuration": {},
+    "description": "Description",
+    "documentation": {},
+    "id": 100382,
+    "lastModifiedAgent": "structurizr-cloud/dsl-editor/7cb3083a-aff4-4ba5-a31f-a435b415186e",
+    "lastModifiedDate": "2025-03-12T22:49:26Z",
+    "lastModifiedUser": "christyepez@icloud.com",
+    "model": {
+        "people": [
+            {
+                "description": "Un cliente que interactúa con el sistema bancario a través de la aplicación web o móvil.",
+                "id": "1",
+                "location": "Unspecified",
+                "name": "Cliente",
+                "properties": {
+                    "structurizr.dsl.identifier": "user"
+                },
+                "relationships": [
+                    {
+                        "description": "Accede a la aplicación web",
+                        "destinationId": "3",
+                        "id": "14",
+                        "sourceId": "1",
+                        "tags": "Relationship"
+                    },
+                    {
+                        "description": "Accede a la aplicación web",
+                        "destinationId": "2",
+                        "id": "15",
+                        "linkedRelationshipId": "14",
+                        "sourceId": "1"
+                    },
+                    {
+                        "description": "Accede a la aplicación móvil",
+                        "destinationId": "5",
+                        "id": "16",
+                        "sourceId": "1",
+                        "tags": "Relationship"
+                    }
+                ],
+                "tags": "Element,Person"
+            }
+        ],
+        "softwareSystems": [
+            {
+                "containers": [
+                    {
+                        "components": [
+                            {
+                                "description": "Frontend para clientes basado en navegadores.",
+                                "documentation": {},
+                                "id": "4",
+                                "name": "Aplicación Web",
+                                "properties": {
+                                    "structurizr.dsl.identifier": "appweb"
+                                },
+                                "tags": "Element,Component",
+                                "technology": "Angular, Tailwind CSS, ReactJS"
+                            }
+                        ],
+                        "description": "Aplicación web de una sola página (SPA) donde los clientes pueden acceder a sus cuentas y realizar transacciones.",
+                        "documentation": {},
+                        "id": "3",
+                        "name": "Aplicación Web (SPA)",
+                        "properties": {
+                            "structurizr.dsl.identifier": "webapp"
+                        },
+                        "relationships": [
+                            {
+                                "description": "Hace solicitudes a través del API Gateway",
+                                "destinationId": "7",
+                                "id": "17",
+                                "sourceId": "3",
+                                "tags": "Relationship"
+                            }
+                        ],
+                        "tags": "Element,Container"
+                    },
+                    {
+                        "components": [
+                            {
+                                "description": "Aplicación móvil para acceso a servicios bancarios.",
+                                "documentation": {},
+                                "id": "6",
+                                "name": "Aplicación Móvil",
+                                "properties": {
+                                    "structurizr.dsl.identifier": "appmobile"
+                                },
+                                "tags": "Element,Component",
+                                "technology": "Flutter / React Native"
+                            }
+                        ],
+                        "description": "Aplicación móvil multiplataforma que permite realizar las mismas operaciones que la aplicación web.",
+                        "documentation": {},
+                        "id": "5",
+                        "name": "Aplicación Móvil",
+                        "properties": {
+                            "structurizr.dsl.identifier": "mobileapp"
+                        },
+                        "relationships": [
+                            {
+                                "description": "Hace solicitudes a través del API Gateway",
+                                "destinationId": "7",
+                                "id": "18",
+                                "sourceId": "5",
+                                "tags": "Relationship"
+                            }
+                        ],
+                        "tags": "Element,Container"
+                    },
+                    {
+                        "description": "Enrutador central que dirige las solicitudes hacia los microservicios correspondientes.",
+                        "documentation": {},
+                        "id": "7",
+                        "name": "API Gateway",
+                        "properties": {
+                            "structurizr.dsl.identifier": "apigateway"
+                        },
+                        "relationships": [
+                            {
+                                "description": "Gestiona la autenticación de usuarios",
+                                "destinationId": "8",
+                                "id": "19",
+                                "sourceId": "7",
+                                "tags": "Relationship"
+                            },
+                            {
+                                "description": "Consulta datos de cliente, cuentas y movimientos",
+                                "destinationId": "9",
+                                "id": "20",
+                                "sourceId": "7",
+                                "tags": "Relationship"
+                            },
+                            {
+                                "description": "Envía notificaciones a través de servicios de mensajería",
+                                "destinationId": "10",
+                                "id": "21",
+                                "sourceId": "7",
+                                "tags": "Relationship"
+                            },
+                            {
+                                "description": "Utiliza el servicio de reconocimiento facial para onboarding",
+                                "destinationId": "12",
+                                "id": "22",
+                                "sourceId": "7",
+                                "tags": "Relationship"
+                            }
+                        ],
+                        "tags": "Element,Container",
+                        "technology": "NGINX / Kong"
+                    },
+                    {
+                        "description": "Servicio encargado de gestionar la autenticación de los usuarios mediante OAuth2.0.",
+                        "documentation": {},
+                        "id": "8",
+                        "name": "Servicio de Autenticación",
+                        "properties": {
+                            "structurizr.dsl.identifier": "authservice"
+                        },
+                        "tags": "Element,Container",
+                        "technology": "Auth0 / Okta"
+                    },
+                    {
+                        "description": "Microservicio que consulta la base de datos principal con la información del cliente, cuentas y movimientos.",
+                        "documentation": {},
+                        "id": "9",
+                        "name": "Servicio Core",
+                        "properties": {
+                            "structurizr.dsl.identifier": "coreservice"
+                        },
+                        "relationships": [
+                            {
+                                "description": "Realiza transferencias y pagos interbancarios",
+                                "destinationId": "13",
+                                "id": "23",
+                                "sourceId": "9",
+                                "tags": "Relationship"
+                            },
+                            {
+                                "description": "Registra las acciones del cliente para auditoría",
+                                "destinationId": "11",
+                                "id": "24",
+                                "sourceId": "9",
+                                "tags": "Relationship"
+                            }
+                        ],
+                        "tags": "Element,Container",
+                        "technology": "Spring Boot"
+                    },
+                    {
+                        "description": "Servicio encargado de enviar notificaciones a los usuarios sobre sus movimientos, pagos y transacciones.",
+                        "documentation": {},
+                        "id": "10",
+                        "name": "Servicio de Notificaciones",
+                        "properties": {
+                            "structurizr.dsl.identifier": "notificationservice"
+                        },
+                        "tags": "Element,Container",
+                        "technology": "AWS SNS / Twilio"
+                    },
+                    {
+                        "description": "Microservicio que registra todas las acciones realizadas por el cliente para auditoría.",
+                        "documentation": {},
+                        "id": "11",
+                        "name": "Servicio de Auditoría",
+                        "properties": {
+                            "structurizr.dsl.identifier": "auditservice"
+                        },
+                        "tags": "Element,Container",
+                        "technology": "Elasticsearch / MongoDB"
+                    },
+                    {
+                        "description": "Microservicio que gestiona el proceso de onboarding usando reconocimiento facial.",
+                        "documentation": {},
+                        "id": "12",
+                        "name": "Servicio de Reconocimiento Facial",
+                        "properties": {
+                            "structurizr.dsl.identifier": "facialrecognitionservice"
+                        },
+                        "tags": "Element,Container",
+                        "technology": "AWS Rekognition / Azure Face API"
+                    },
+                    {
+                        "description": "API externa que permite realizar pagos y transferencias entre cuentas interbancarias.",
+                        "documentation": {},
+                        "id": "13",
+                        "name": "API de Pagos Externos",
+                        "properties": {
+                            "structurizr.dsl.identifier": "externalpaymentapi"
+                        },
+                        "tags": "Element,Container",
+                        "technology": "REST API"
+                    }
+                ],
+                "description": "Sistema de banca por internet donde los usuarios pueden consultar sus movimientos, realizar transferencias y pagos.",
+                "documentation": {},
+                "id": "2",
+                "location": "Unspecified",
+                "name": "Sistema Bancario",
+                "properties": {
+                    "structurizr.dsl.identifier": "coresystem"
+                },
+                "tags": "Element,Software System"
+            }
+        ]
+    },
+    "name": "Name",
+    "properties": {
+        "structurizr.dsl": "d29ya3NwYWNlIHsNCg0KICAgIG1vZGVsIHsNCiAgICAgICAgdXNlciA9IHBlcnNvbiAiQ2xpZW50ZSIgew0KICAgICAgICAgICAgZGVzY3JpcHRpb24gIlVuIGNsaWVudGUgcXVlIGludGVyYWN0w7phIGNvbiBlbCBzaXN0ZW1hIGJhbmNhcmlvIGEgdHJhdsOpcyBkZSBsYSBhcGxpY2FjacOzbiB3ZWIgbyBtw7N2aWwuIg0KICAgICAgICB9DQoNCiAgICAgICAgY29yZVN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJTaXN0ZW1hIEJhbmNhcmlvIiB7DQogICAgICAgICAgICBkZXNjcmlwdGlvbiAiU2lzdGVtYSBkZSBiYW5jYSBwb3IgaW50ZXJuZXQgZG9uZGUgbG9zIHVzdWFyaW9zIHB1ZWRlbiBjb25zdWx0YXIgc3VzIG1vdmltaWVudG9zLCByZWFsaXphciB0cmFuc2ZlcmVuY2lhcyB5IHBhZ29zLiINCg0KICAgICAgICAgICAgd2ViQXBwID0gY29udGFpbmVyICJBcGxpY2FjacOzbiBXZWIgKFNQQSkiIHsNCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiQXBsaWNhY2nDs24gd2ViIGRlIHVuYSBzb2xhIHDDoWdpbmEgKFNQQSkgZG9uZGUgbG9zIGNsaWVudGVzIHB1ZWRlbiBhY2NlZGVyIGEgc3VzIGN1ZW50YXMgeSByZWFsaXphciB0cmFuc2FjY2lvbmVzLiINCiAgICAgICAgICAgICANCiAgICAgICAgICAgICAgICANCiAgICAgICAgICAgICAgICAgYXBwV2ViID0gY29tcG9uZW50ICJBcGxpY2FjacOzbiBXZWIiIHsNCiAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkZyb250ZW5kIHBhcmEgY2xpZW50ZXMgYmFzYWRvIGVuIG5hdmVnYWRvcmVzLiINCiAgICAgICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiQW5ndWxhciwgVGFpbHdpbmQgQ1NTLCBSZWFjdEpTIg0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgbW9iaWxlQXBwID0gY29udGFpbmVyICJBcGxpY2FjacOzbiBNw7N2aWwiIHsNCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiQXBsaWNhY2nDs24gbcOzdmlsIG11bHRpcGxhdGFmb3JtYSBxdWUgcGVybWl0ZSByZWFsaXphciBsYXMgbWlzbWFzIG9wZXJhY2lvbmVzIHF1ZSBsYSBhcGxpY2FjacOzbiB3ZWIuIg0KICAgICAgICAgICAgICAgIA0KICAgICAgICAgICAgICAgIGFwcE1vYmlsZSA9IGNvbXBvbmVudCAiQXBsaWNhY2nDs24gTcOzdmlsIiB7DQogICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBcGxpY2FjacOzbiBtw7N2aWwgcGFyYSBhY2Nlc28gYSBzZXJ2aWNpb3MgYmFuY2FyaW9zLiINCiAgICAgICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiRmx1dHRlciAvIFJlYWN0IE5hdGl2ZSINCiAgICAgICAgICAgICAgICANCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIGFwaUdhdGV3YXkgPSBjb250YWluZXIgIkFQSSBHYXRld2F5IiB7DQogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkVucnV0YWRvciBjZW50cmFsIHF1ZSBkaXJpZ2UgbGFzIHNvbGljaXR1ZGVzIGhhY2lhIGxvcyBtaWNyb3NlcnZpY2lvcyBjb3JyZXNwb25kaWVudGVzLiINCiAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJOR0lOWCAvIEtvbmciDQogICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIGF1dGhTZXJ2aWNlID0gY29udGFpbmVyICJTZXJ2aWNpbyBkZSBBdXRlbnRpY2FjacOzbiIgew0KICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJTZXJ2aWNpbyBlbmNhcmdhZG8gZGUgZ2VzdGlvbmFyIGxhIGF1dGVudGljYWNpw7NuIGRlIGxvcyB1c3VhcmlvcyBtZWRpYW50ZSBPQXV0aDIuMC4iDQogICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiQXV0aDAgLyBPa3RhIg0KICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICBjb3JlU2VydmljZSA9IGNvbnRhaW5lciAiU2VydmljaW8gQ29yZSIgew0KICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJNaWNyb3NlcnZpY2lvIHF1ZSBjb25zdWx0YSBsYSBiYXNlIGRlIGRhdG9zIHByaW5jaXBhbCBjb24gbGEgaW5mb3JtYWNpw7NuIGRlbCBjbGllbnRlLCBjdWVudGFzIHkgbW92aW1pZW50b3MuIg0KICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIlNwcmluZyBCb290Ig0KICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICBub3RpZmljYXRpb25TZXJ2aWNlID0gY29udGFpbmVyICJTZXJ2aWNpbyBkZSBOb3RpZmljYWNpb25lcyIgew0KICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJTZXJ2aWNpbyBlbmNhcmdhZG8gZGUgZW52aWFyIG5vdGlmaWNhY2lvbmVzIGEgbG9zIHVzdWFyaW9zIHNvYnJlIHN1cyBtb3ZpbWllbnRvcywgcGFnb3MgeSB0cmFuc2FjY2lvbmVzLiINCiAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJBV1MgU05TIC8gVHdpbGlvIg0KICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICBhdWRpdFNlcnZpY2UgPSBjb250YWluZXIgIlNlcnZpY2lvIGRlIEF1ZGl0b3LDrWEiIHsNCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiTWljcm9zZXJ2aWNpbyBxdWUgcmVnaXN0cmEgdG9kYXMgbGFzIGFjY2lvbmVzIHJlYWxpemFkYXMgcG9yIGVsIGNsaWVudGUgcGFyYSBhdWRpdG9yw61hLiINCiAgICAgICAgICAgICAgICB0ZWNobm9sb2d5ICJFbGFzdGljc2VhcmNoIC8gTW9uZ29EQiINCiAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgZmFjaWFsUmVjb2duaXRpb25TZXJ2aWNlID0gY29udGFpbmVyICJTZXJ2aWNpbyBkZSBSZWNvbm9jaW1pZW50byBGYWNpYWwiIHsNCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiTWljcm9zZXJ2aWNpbyBxdWUgZ2VzdGlvbmEgZWwgcHJvY2VzbyBkZSBvbmJvYXJkaW5nIHVzYW5kbyByZWNvbm9jaW1pZW50byBmYWNpYWwuIg0KICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIkFXUyBSZWtvZ25pdGlvbiAvIEF6dXJlIEZhY2UgQVBJIg0KICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICBleHRlcm5hbFBheW1lbnRBcGkgPSBjb250YWluZXIgIkFQSSBkZSBQYWdvcyBFeHRlcm5vcyIgew0KICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBUEkgZXh0ZXJuYSBxdWUgcGVybWl0ZSByZWFsaXphciBwYWdvcyB5IHRyYW5zZmVyZW5jaWFzIGVudHJlIGN1ZW50YXMgaW50ZXJiYW5jYXJpYXMuIg0KICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIlJFU1QgQVBJIg0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQoNCiAgICAgICAgdXNlciAtPiB3ZWJBcHAgIkFjY2VkZSBhIGxhIGFwbGljYWNpw7NuIHdlYiINCiAgICAgICAgdXNlciAtPiBtb2JpbGVBcHAgIkFjY2VkZSBhIGxhIGFwbGljYWNpw7NuIG3Ds3ZpbCINCiAgICAgICAgd2ViQXBwIC0+IGFwaUdhdGV3YXkgIkhhY2Ugc29saWNpdHVkZXMgYSB0cmF2w6lzIGRlbCBBUEkgR2F0ZXdheSINCiAgICAgICAgbW9iaWxlQXBwIC0+IGFwaUdhdGV3YXkgIkhhY2Ugc29saWNpdHVkZXMgYSB0cmF2w6lzIGRlbCBBUEkgR2F0ZXdheSINCiAgICAgICAgYXBpR2F0ZXdheSAtPiBhdXRoU2VydmljZSAiR2VzdGlvbmEgbGEgYXV0ZW50aWNhY2nDs24gZGUgdXN1YXJpb3MiDQogICAgICAgIGFwaUdhdGV3YXkgLT4gY29yZVNlcnZpY2UgIkNvbnN1bHRhIGRhdG9zIGRlIGNsaWVudGUsIGN1ZW50YXMgeSBtb3ZpbWllbnRvcyINCiAgICAgICAgYXBpR2F0ZXdheSAtPiBub3RpZmljYXRpb25TZXJ2aWNlICJFbnbDrWEgbm90aWZpY2FjaW9uZXMgYSB0cmF2w6lzIGRlIHNlcnZpY2lvcyBkZSBtZW5zYWplcsOtYSINCiAgICAgICAgYXBpR2F0ZXdheSAtPiBmYWNpYWxSZWNvZ25pdGlvblNlcnZpY2UgIlV0aWxpemEgZWwgc2VydmljaW8gZGUgcmVjb25vY2ltaWVudG8gZmFjaWFsIHBhcmEgb25ib2FyZGluZyINCiAgICAgICAgY29yZVNlcnZpY2UgLT4gZXh0ZXJuYWxQYXltZW50QXBpICJSZWFsaXphIHRyYW5zZmVyZW5jaWFzIHkgcGFnb3MgaW50ZXJiYW5jYXJpb3MiDQogICAgICAgIGNvcmVTZXJ2aWNlIC0+IGF1ZGl0U2VydmljZSAiUmVnaXN0cmEgbGFzIGFjY2lvbmVzIGRlbCBjbGllbnRlIHBhcmEgYXVkaXRvcsOtYSINCiAgICB9DQoNCiAgICB2aWV3cyB7DQogICAgICAgIHN5c3RlbUNvbnRleHQgY29yZVN5c3RlbSB7DQogICAgICAgICAgICBpbmNsdWRlICoNCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHINCiAgICAgICAgfQ0KDQogICAgICAgIGNvbnRhaW5lciBjb3JlU3lzdGVtIHsNCiAgICAgICAgICAgIGluY2x1ZGUgKg0KICAgICAgICAgICAgYXV0b2xheW91dCBscg0KICAgICAgICB9DQoNCiAgICAgICAgY29tcG9uZW50IHdlYkFwcCB7DQogICAgICAgICAgICBpbmNsdWRlICoNCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHINCiAgICAgICAgfQ0KDQogICAgICAgIGNvbXBvbmVudCBtb2JpbGVBcHAgew0KICAgICAgICAgICAgaW5jbHVkZSAqDQogICAgICAgICAgICBhdXRvbGF5b3V0IGxyDQogICAgICAgIH0NCiAgIA0KDQogICAgc3R5bGVzIHsNCiAgICAgICAgLy8gRGVmaW5pbW9zIGxvcyBlc3RpbG9zIGRlIGxvcyBlbGVtZW50b3MNCiAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7DQogICAgICAgICAgICBiYWNrZ3JvdW5kICIjZmY5OTAwIg0KICAgICAgICAgICAgY29sb3IgIiNmZmZmZmYiDQogICAgICAgIH0NCiAgICAgICAgZWxlbWVudCAiU29mdHdhcmVTeXN0ZW0iIHsNCiAgICAgICAgICAgIGJhY2tncm91bmQgIiMzMzY2Y2MiDQogICAgICAgICAgICBjb2xvciAiI2ZmZmZmZiINCiAgICAgICAgfQ0KICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsNCiAgICAgICAgICAgIGJhY2tncm91bmQgIiMwMDk5MDAiDQogICAgICAgICAgICBjb2xvciAiI2ZmZmZmZiINCiAgICAgICAgfQ0KICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsNCiAgICAgICAgICAgIGJhY2tncm91bmQgIiM2NmNjNjYiDQogICAgICAgICAgICBjb2xvciAiI2ZmZmZmZiINCiAgICAgICAgfQ0KICAgIH0NCn0NCiAgDQp9DQo="
+    },
+    "views": {
+        "componentViews": [
+            {
+                "automaticLayout": {
+                    "applied": true,
+                    "edgeSeparation": 0,
+                    "implementation": "Graphviz",
+                    "nodeSeparation": 300,
+                    "rankDirection": "LeftRight",
+                    "rankSeparation": 300,
+                    "vertices": false
+                },
+                "containerId": "3",
+                "dimensions": {
+                    "height": 811,
+                    "width": 1102
+                },
+                "elements": [
+                    {
+                        "id": "4",
+                        "x": 329,
+                        "y": 329
+                    }
+                ],
+                "externalContainerBoundariesVisible": false,
+                "generatedKey": true,
+                "key": "Component-001",
+                "order": 3
+            },
+            {
+                "automaticLayout": {
+                    "applied": true,
+                    "edgeSeparation": 0,
+                    "implementation": "Graphviz",
+                    "nodeSeparation": 300,
+                    "rankDirection": "LeftRight",
+                    "rankSeparation": 300,
+                    "vertices": false
+                },
+                "containerId": "5",
+                "dimensions": {
+                    "height": 811,
+                    "width": 1015
+                },
+                "elements": [
+                    {
+                        "id": "6",
+                        "x": 282,
+                        "y": 185
+                    }
+                ],
+                "externalContainerBoundariesVisible": false,
+                "generatedKey": true,
+                "key": "Component-002",
+                "order": 4
+            }
+        ],
+        "configuration": {
+            "branding": {},
+            "lastSavedView": "Component-001",
+            "metadataSymbols": "SquareBrackets",
+            "styles": {
+                "elements": [
+                    {
+                        "background": "#ff9900",
+                        "color": "#ffffff",
+                        "tag": "Person"
+                    },
+                    {
+                        "background": "#3366cc",
+                        "color": "#ffffff",
+                        "tag": "SoftwareSystem"
+                    },
+                    {
+                        "background": "#009900",
+                        "color": "#ffffff",
+                        "tag": "Container"
+                    },
+                    {
+                        "background": "#66cc66",
+                        "color": "#ffffff",
+                        "tag": "Component"
+                    }
+                ]
+            },
+            "terminology": {}
+        },
+        "containerViews": [
+            {
+                "automaticLayout": {
+                    "applied": true,
+                    "edgeSeparation": 0,
+                    "implementation": "Graphviz",
+                    "nodeSeparation": 300,
+                    "rankDirection": "LeftRight",
+                    "rankSeparation": 300,
+                    "vertices": false
+                },
+                "dimensions": {
+                    "height": 2611,
+                    "width": 3870
+                },
+                "elements": [
+                    {
+                        "id": "1",
+                        "x": 208,
+                        "y": 1229
+                    },
+                    {
+                        "id": "3",
+                        "x": 958,
+                        "y": 929
+                    },
+                    {
+                        "id": "5",
+                        "x": 958,
+                        "y": 1529
+                    },
+                    {
+                        "id": "7",
+                        "x": 1708,
+                        "y": 1229
+                    },
+                    {
+                        "id": "8",
+                        "x": 2458,
+                        "y": 929
+                    },
+                    {
+                        "id": "9",
+                        "x": 2458,
+                        "y": 329
+                    },
+                    {
+                        "id": "10",
+                        "x": 2458,
+                        "y": 2129
+                    },
+                    {
+                        "id": "11",
+                        "x": 3208,
+                        "y": 929
+                    },
+                    {
+                        "id": "12",
+                        "x": 2458,
+                        "y": 1529
+                    },
+                    {
+                        "id": "13",
+                        "x": 3208,
+                        "y": 329
+                    }
+                ],
+                "externalSoftwareSystemBoundariesVisible": false,
+                "generatedKey": true,
+                "key": "Container-001",
+                "order": 2,
+                "relationships": [
+                    {
+                        "id": "14"
+                    },
+                    {
+                        "id": "16"
+                    },
+                    {
+                        "id": "17"
+                    },
+                    {
+                        "id": "18"
+                    },
+                    {
+                        "id": "19"
+                    },
+                    {
+                        "id": "20"
+                    },
+                    {
+                        "id": "21"
+                    },
+                    {
+                        "id": "22"
+                    },
+                    {
+                        "id": "23"
+                    },
+                    {
+                        "id": "24"
+                    }
+                ],
+                "softwareSystemId": "2"
+            }
+        ],
+        "systemContextViews": [
+            {
+                "automaticLayout": {
+                    "applied": true,
+                    "edgeSeparation": 0,
+                    "implementation": "Graphviz",
+                    "nodeSeparation": 300,
+                    "rankDirection": "LeftRight",
+                    "rankSeparation": 300,
+                    "vertices": false
+                },
+                "dimensions": {
+                    "height": 700,
+                    "width": 1600
+                },
+                "elements": [
+                    {
+                        "id": "1",
+                        "x": 208,
+                        "y": 208
+                    },
+                    {
+                        "id": "2",
+                        "x": 958,
+                        "y": 208
+                    }
+                ],
+                "enterpriseBoundaryVisible": true,
+                "generatedKey": true,
+                "key": "SystemContext-001",
+                "order": 1,
+                "relationships": [
+                    {
+                        "id": "15"
+                    }
+                ],
+                "softwareSystemId": "2"
+            }
+        ]
+    }
+}
